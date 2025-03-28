@@ -1,0 +1,50 @@
+<div id="center" class="main center">
+
+  <div class="container">
+
+    <!-- Début partie spécifique home page -->
+    <div class="row" *ngIf="movie">
+      <div class="col-xs-12 col-sm-4">
+        <img class="details-img" [src]="movie.poster_path" [alt]="movie.title" />
+      </div>
+      <div class="col-xs-12 col-sm-8">
+        <h2>{{ movie.title }}</h2>
+        <h3>{{ movie.overview }}</h3>
+        <p class="meta-wrap">
+          <span class="rating">rating: {{ movie.vote_average }} </span>
+          <span class="meta">{{movie.original_language}} / {{ movie.runtime }} min. / {{ movie.release_date }}</span>
+        </p>
+
+        <ul class="genres" >
+          <li *ngFor="let genre of movie.genres">{{genre.name}}</li>
+        </ul>
+
+        <h3>Commentaires</h3>
+        <form [formGroup]="commentData" (ngSubmit)="addPost()">
+
+          <label for="rating">rating</label>
+          <input id="rating" name="rating" formControlName="rating" placeholder="rating" type="number" min="0" max="10"/>
+    
+          <label for="text">Text</label>
+          <input id="text" name="text" formControlName="text" placeholder="text" type="text" />
+    
+          <button type="submit">Create</button>
+    
+          <div *ngIf="error">{{ error }}</div>
+        </form>
+        <ul class="comments" >
+          <li *ngFor="let comments of movie.comments.reverse()">
+            Commentaire anonyme {{comments.id}} posté le {{comments.date}}:
+            <ul>
+              <li>Note : {{comments.rating}}</li>
+              <li>Détails : {{comments.text}}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Fin partie spécifique home page -->
+
+  </div>
+
+</div>

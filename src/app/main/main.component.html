@@ -1,0 +1,19 @@
+<app-sidebar
+(postSelectedGenre)="filterGenres($event)"
+></app-sidebar>
+<div id="center" class="main center">
+  <div class="container">
+    <h1>{{selectedGenre.name}}</h1>
+
+    <!-- Début partie spécifique home page -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let movie of movies">
+        <app-card *ngIf="selectedGenre.id == -1" [movie]="movie"></app-card>
+        <app-card *ngIf="(selectedGenre.id != -1) && (movie.genre_ids.includes(selectedGenre.id))" [movie]="movie"></app-card>
+      </div>
+    </div>
+    <!-- Fin partie spécifique home page -->
+
+  </div>
+
+  </div>

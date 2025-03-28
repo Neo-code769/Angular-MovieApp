@@ -1,0 +1,14 @@
+<input type="checkbox" class="openSidebarMenu" id="openSidebarMenu" />
+<label for="openSidebarMenu" class="sidebarIconToggle">
+  <div class="spinner diagonal part-1"></div>
+  <div class="spinner horizontal"></div>
+  <div class="spinner diagonal part-2"></div>
+</label>
+<div id="sidebarMenu">
+  <ul class="sidebarMenuInner">
+    <li><button (click)="selectGenreFilm(genreDefault)">{{genreDefault.name}}</button></li>
+    <li *ngFor="let genre of genres">
+      <button (click)="selectGenreFilm(genre)">{{genre.name}}</button>
+    </li>
+  </ul>
+</div>
